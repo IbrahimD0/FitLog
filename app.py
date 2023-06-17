@@ -23,9 +23,9 @@ def load_user(user_id):
 
 class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20), nullable=False, unique=True)
-    reps = db.Column(db.String(20), nullable=False, unique=True)
-    sets = db.Column(db.String(20), nullable=False, unique=True)
+    name = db.Column(db.String(20), nullable=False)
+    reps = db.Column(db.String(20), nullable=False)
+    sets = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -105,18 +105,19 @@ def homepage():
 @app.route('/workout', methods=['GET', 'POST'])
 def work_out():
     if request.method == "POST":
-        name = request.method.get['name']
-        reps = request.method.get['reps']
-        sets = request.method.get['sets']
+        name = request.form.get('name')
+        reps = request.form.get('reps')
+        sets = request.form.get('sets')
 
-        workouts = Workout(name=name, reps=reps, sets=sets, user_id = current_user)
+        workouts = Workout(name=name, reps=reps, sets=sets, user_id = current_user.id)
         db.session.add(workouts)
         db.session.commit()
     return render_template('workout.html',user=current_user)
 
 @app.route('/progress', methods=['GET', 'POST'])
 def display_workouts():
-    workouts = Workout.query.filter_by(user_id=current_user.id).all()
-    return render_template('progress.html', workouts=workouts)
+
+
+    return render_template('progress.html', user=current_user)
 if __name__ == "__main__":
     app.run(debug=True)

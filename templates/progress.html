@@ -1,51 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workouts</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-
-    .logout-btn {
-      margin-top: 10px;
-    }
-  </style>
+    <title>Workout Progress</title>
 </head>
 <body>
-  {% if current_user.is_authenticated %}
-    <h2>Welcome, {{ current_user.username }}!</h2>
-    <h3>Workouts</h3>
+    <h2>Workout Progress</h2>
+    {% if user %}
     <table>
-      <tr>
-        <th>Name</th>
-        <th>Reps</th>
-        <th>Sets</th>
-      </tr>
-      {% for workout in workouts %}
-      <tr>
-        <td>{{ workout.name }}</td>
-        <td>{{ workout.reps }}</td>
-        <td>{{ workout.sets }}</td>
-      </tr>
-      {% endfor %}
+        <tr>
+            <th>Name</th>
+            <th>Reps</th>
+            <th>Sets</th>
+        </tr>
+        {% for workout in user.workouts %}
+        <tr>
+            <td>{{ workout.name }}</td>
+            <td>{{ workout.reps }}</td>
+            <td>{{ workout.sets }}</td>
+        </tr>
+        {% endfor %}
     </table>
-    <form action="/logout" method="post">
-      <input class="logout-btn" type="submit" value="Logout">
-    </form>
-  {% else %}
-    <h2>Please log in to view your workouts.</h2>
-    <a href="/login">Login</a>
-  {% endif %}
+    {% else %}
+    <p>No workouts to display.</p>
+    {% endif %}
 </body>
 </html>

@@ -34,7 +34,7 @@
   </div>
   <div>
       <h2>Enter Workout Data</h2>
-      <form action="/progress" method="post">
+      <form action="/workout" method="post">
         <table>
           <tr>
             <th>Name</th>
@@ -51,13 +51,7 @@
   </form>
 
   </div>
-  <div>
-      {% for workout in user.workout %}
-      {{ workout.name }}
-      {{ workout.reps }}
-      {{ workout.sets }}
-      {% endfor %}
-  </div>
+
 
   <!-- Rest of your website content -->
 
