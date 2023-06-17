@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="static/login.css">
+</head>
+{% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %} {% if category ==
+    'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+<body>
+    <div class="login-container">
+        <form method="POST">
+        <h3 align="center">Login</h3>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input
+                    type="username"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="Enter email"
+            />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Enter password"
+            />
+        </div>
+
+        <br/>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+        <p class="signup-link">Don't have an account? <a href="/signup">Sign up</a></p>
+    </div>
+</body>
+</html>

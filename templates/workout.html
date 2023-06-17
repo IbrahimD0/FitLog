@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Workout Tracking Website</title>
+  <link rel="stylesheet" type="text/css" href="static/workout.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/homepage">Home</a></li>
+        <li><a href="#">Routines</a></li>
+        <li><a href="/progress">Progress</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="login.html">Log out</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="workout-section">
+    <h2>Workout Section</h2>
+    <div class="workout-options">
+      <div class="create-workout">
+        <h3>Create Your Workout Routine</h3>
+        <p>Customize and design your own workout routine based on your preferences and goals.</p>
+        <a href="#" class="btn">Create Workout</a>
+      </div>
+      <div class="premade-workout">
+        <h3>Choose a Pre-made Workout Split</h3>
+        <p>Explore our collection of pre-made workout splits designed by fitness experts.</p>
+        <a href="#" class="btn">View Pre-made Workouts</a>
+      </div>
+    </div>
+  </div>
+  <div>
+      <h2>Enter Workout Data</h2>
+      <form action="/progress" method="post">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Reps</th>
+            <th>Sets</th>
+          </tr>
+          <tr>
+            <td><input type="text" name="name" required></td>
+            <td><input type="text" name="reps" required></td>
+            <td><input type="text" name="sets" required></td>
+          </tr>
+        </table>
+        <input type="submit" value="Save">
+  </form>
+
+  </div>
+  <div>
+      {% for workout in user.workout %}
+      {{ workout.name }}
+      {{ workout.reps }}
+      {{ workout.sets }}
+      {% endfor %}
+  </div>
+
+  <!-- Rest of your website content -->
+
+</body>
+</html>

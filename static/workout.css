@@ -1,0 +1,77 @@
+/* Reset default margin and padding */
+body, header, nav, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the header background and add spacing */
+header {
+  background-color: #333;
+  padding: 10px;
+}
+
+/* Style the navigation bar */
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #ff0000;
+}
+
+.workout-section {
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.workout-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.create-workout,
+.premade-workout {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 48%;
+}
+
+.create-workout h3,
+.premade-workout h3 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.create-workout p,
+.premade-workout p {
+  color: #555;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.btn:hover {
+  background-color: #555;
+}

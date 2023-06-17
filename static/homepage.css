@@ -1,0 +1,33 @@
+/* Reset default margin and padding */
+body, header, nav, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the header background and add spacing */
+header {
+  background-color: #333;
+  padding: 10px;
+}
+
+/* Style the navigation bar */
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #ff0000;
+}
+
