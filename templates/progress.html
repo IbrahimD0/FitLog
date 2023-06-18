@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Progress</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='progress.css') }}">
+    <link rel="stylesheet" type="text/css" href="/static/progress.css">
 </head>
 <body>
     <h1>Workout Progress</h1>
@@ -13,7 +13,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Exercise Name</th>
+                    <th>Exercise</th>
                     <th>Reps</th>
                     <th>Sets</th>
                 </tr>
@@ -29,5 +29,7 @@
             </tbody>
         </table>
     {% endfor %}
+    <button onclick="window.location.href='/homepage'">Return to
+            Homepage</button>
 </body>
 </html>

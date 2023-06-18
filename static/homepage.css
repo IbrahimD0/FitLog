@@ -3,10 +3,12 @@ body, header, nav, ul, li {
   margin: 0;
   padding: 0;
 }
-
+body{
+  background: linear-gradient(to right, #000046, #1cb5e0);
+}
 /* Style the header background and add spacing */
 header {
-  background-color: #333;
+  background-color: rgba(255,255,255, 0.2);
   padding: 10px;
 }
 

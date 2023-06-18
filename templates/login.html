@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="static/login.css">
+    <link rel="stylesheet" type="text/css" href="/static/login.css">
 </head>
 {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %} {% if category ==
@@ -24,7 +24,7 @@
 <body>
     <div class="login-container">
         <form method="POST">
-        <h3 align="center">Login</h3>
+        <h3>Login</h3>
         <div class="form-group">
             <label for="username">Username</label>
             <input
@@ -32,7 +32,7 @@
                     class="form-control"
                     id="username"
                     name="username"
-                    placeholder="Enter email"
+                    placeholder="Enter username"
             />
         </div>
         <div class="form-group">

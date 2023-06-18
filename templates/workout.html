@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Create Workout</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='workout.css') }}">
+    <link rel="stylesheet" type="text/css" href="/static/workout.css">
 </head>
 <body>
     <h1>Create Workout</h1>
@@ -25,11 +25,16 @@
         <button type="button" onclick="addExercise()">Add Exercise</button>
         <br><br>
         <button type="submit">Save Workouts</button>
+        <br><br>
+        <button type="button" onclick="window.location.href='/homepage'">Return
+        to Homepage</button>
     </form>
+
+
 
     <script>
         function addExercise() {
-            var exerciseDiv = document.createElement("div");
+            const exerciseDiv = document.createElement("div");
             exerciseDiv.classList.add("exercise");
             exerciseDiv.innerHTML = `
                 <label>Exercise Name:</label>
@@ -43,5 +48,7 @@
             document.getElementById("exercisesContainer").appendChild(exerciseDiv);
         }
     </script>
+
+
 </body>
 </html>
