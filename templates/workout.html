@@ -1,59 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Your Workout Tracking Website</title>
-  <link rel="stylesheet" type="text/css" href="static/workout.css">
+    <title>Create Workout</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='workout.css') }}">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="/homepage">Home</a></li>
-        <li><a href="#">Routines</a></li>
-        <li><a href="/progress">Progress</a></li>
-        <li><a href="#">Community</a></li>
-        <li><a href="login.html">Log out</a></li>
-      </ul>
-    </nav>
-  </header>
+    <h1>Create Workout</h1>
 
-  <div class="workout-section">
-    <h2>Workout Section</h2>
-    <div class="workout-options">
-      <div class="create-workout">
-        <h3>Create Your Workout Routine</h3>
-        <p>Customize and design your own workout routine based on your preferences and goals.</p>
-        <a href="#" class="btn">Create Workout</a>
-      </div>
-      <div class="premade-workout">
-        <h3>Choose a Pre-made Workout Split</h3>
-        <p>Explore our collection of pre-made workout splits designed by fitness experts.</p>
-        <a href="#" class="btn">View Pre-made Workouts</a>
-      </div>
-    </div>
-  </div>
-  <div>
-      <h2>Enter Workout Data</h2>
-      <form action="/workout" method="post">
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Reps</th>
-            <th>Sets</th>
-          </tr>
-          <tr>
-            <td><input type="text" name="name" required></td>
-            <td><input type="text" name="reps" required></td>
-            <td><input type="text" name="sets" required></td>
-          </tr>
-        </table>
-        <input type="submit" value="Save">
-  </form>
+    <form action="{{ url_for('work_out') }}" method="POST">
+        <label for="workoutName">Workout Name:</label>
+        <input type="text" id="workoutName" name="workoutName" required>
+        <br><br>
+        <div id="exercisesContainer">
+            <div class="exercise">
+                <label for="exerciseName">Exercise Name:</label>
+                <input type="text" id="exerciseName" name="name[]" required>
+                <label for="reps">Reps:</label>
+                <input type="text" id="reps" name="reps[]" required>
+                <label for="sets">Sets:</label>
+                <input type="text" id="sets" name="sets[]" required>
+                <br><br>
+            </div>
+        </div>
+        <button type="button" onclick="addExercise()">Add Exercise</button>
+        <br><br>
+        <button type="submit">Save Workouts</button>
+    </form>
 
-  </div>
-
-
-  <!-- Rest of your website content -->
-
+    <script>
+        function addExercise() {
+            var exerciseDiv = document.createElement("div");
+            exerciseDiv.classList.add("exercise");
+            exerciseDiv.innerHTML = `
+                <label>Exercise Name:</label>
+                <input type="text" name="name[]" required>
+                <label>Reps:</label>
+                <input type="text" name="reps[]" required>
+                <label>Sets:</label>
+                <input type="text" name="sets[]" required>
+                <br><br>
+            `;
+            document.getElementById("exercisesContainer").appendChild(exerciseDiv);
+        }
+    </script>
 </body>
 </html>

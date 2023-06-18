@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Workout Progress</title>
+    <title>Progress</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='progress.css') }}">
 </head>
 <body>
-    <h2>Workout Progress</h2>
-    {% if user %}
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Reps</th>
-            <th>Sets</th>
-        </tr>
-        {% for workout in user.workouts %}
-        <tr>
-            <td>{{ workout.name }}</td>
-            <td>{{ workout.reps }}</td>
-            <td>{{ workout.sets }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% else %}
-    <p>No workouts to display.</p>
-    {% endif %}
+    <h1>Workout Progress</h1>
+
+    {% for workout in user.workouts %}
+        <h2>{{ workout.name }}</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Exercise Name</th>
+                    <th>Reps</th>
+                    <th>Sets</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exercise in workout.exercises %}
+                    <tr>
+                        <td>{{ exercise.name }}</td>
+                        <td>{{ exercise.reps }}</td>
+                        <td>{{ exercise.sets }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
 </body>
 </html>

@@ -1,0 +1,19 @@
+/* Style the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Additional styles specific to the progress page */
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
