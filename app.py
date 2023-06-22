@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, flash, request
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+from flask_login import UserMixin, login_user, LoginManager, login_required, \
+    logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -31,7 +32,8 @@ class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    exercises = db.relationship('Exercise', backref='workout', cascade='all, delete-orphan')
+    exercises = db.relationship('Exercise', backref='workout',
+                                cascade='all, delete-orphan')
 
 
 class Exercise(db.Model):
@@ -85,7 +87,8 @@ def signup():
         if user:
             flash('Username already exists.', category='error')
         elif len(username) < 4:
-            flash('Username must be greater than 3 characters.', category='error')
+            flash('Username must be greater than 3 characters.',
+                  category='error')
         elif password1 != password2:
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
@@ -124,7 +127,8 @@ def work_out():
             db.session.commit()
 
             for j in range(len(exerciseNames)):
-                exercise = Exercise(name=exerciseNames[j], reps=reps[j], sets=sets[j], workout_id=workout.id)
+                exercise = Exercise(name=exerciseNames[j], reps=reps[j],
+                                    sets=sets[j], workout_id=workout.id)
                 db.session.add(exercise)
                 db.session.commit()
 
@@ -133,10 +137,14 @@ def work_out():
     return render_template('workout.html', user=current_user)
 
 
-
 @app.route('/progress', methods=['GET', 'POST'])
 def display_workouts():
     return render_template('progress.html', user=current_user)
+
+
+@app.route('/routines', methods=['GET', 'POST'])
+def routines():
+    return render_template('routines.html', user=current_user)
 
 
 if __name__ == "__main__":

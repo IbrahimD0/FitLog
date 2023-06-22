@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Routines</title>
+  <link rel="stylesheet" href="/static/routines.css">
+</head>
+<body>
+<h1>Routines </h1>
+<div class="routine-container">
+    <div class="routine">
+        {% for workout in user.workouts %}
+        <h2>{{ workout.name }} Routine</h2>
+        {% for exercise in workout.exercises %}
+            <p>Name: {{exercise.name}}</p>
+            <p>Reps: {{exercise.reps}}</p>
+            <p>Sets: {{exercise.sets}}</p>
+        {% endfor %}
+        <hr>
+    {% endfor %}
+    </div>
+
+</div>
+<button onclick="window.location.href='/homepage'">Return to
+            Homepage</button>
+</body>
+</html>
