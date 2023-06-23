@@ -3,13 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, \
     logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from flask_bcrypt import Bcrypt
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -24,7 +25,7 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
-    password = db.Column(db.String(80), nullable=False)
+    password = db.Column(db.String(128), nullable=False)
     workouts = db.relationship('Workout', backref='user')
 
 
@@ -57,7 +58,7 @@ def login():
 
         user = User.query.filter_by(username=username).first()
         if user:
-            if check_password_hash(user.password, password):
+            if bcrypt.check_password_hash(user.password, password):
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
                 return redirect(url_for('homepage'))
@@ -94,8 +95,8 @@ def signup():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(username=username, password=generate_password_hash(
-                password1, method='sha256'))
+            hashed_password = bcrypt.generate_password_hash(password1).decode('utf-8')
+            new_user = User(username=username, password=hashed_password)
 
             db.session.add(new_user)
             db.session.commit()
