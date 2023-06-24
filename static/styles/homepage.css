@@ -1,0 +1,79 @@
+/* Reset default margin and padding */
+body, header, nav, ul, li {
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: linear-gradient(to right, #000046, #1cb5e0);
+}
+/* Style the header background and add spacing */
+header {
+  background-color: rgba(255,255,255, 0.2);
+  padding: 10px;
+}
+
+/* Style the navigation bar */
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #ff0000;
+}
+
+.main-container {
+  width: 85%;
+  height: 100%;
+  border-radius: 1.5em;
+  margin: 9em auto 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0 2em rgb(69, 69, 69);
+}
+
+.txt-container {
+  margin: 3em 2em 3em 5em;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 50px;
+}
+
+.main-slideshow{
+  width: 50vw;
+  margin: 3em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slidesSection{
+  border: 10px solid;
+  border-image-source: linear-gradient(to right, #000046, #1cb5e0);
+  border-image-slice: 100;
+}
+
