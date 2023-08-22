@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Workout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles/startworkout.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/scripts/timer.js"></script>
+    <script>
+  // Call the startTimer function after the page has loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    startTimer();
+  });
+</script>
+</head>
+<body>
+
+
+    <div class="container d-flex flex-column align-items-center justify-content-center h-100 py-5">
+        <div class="text-center">
+            <h1 class="title">Start Workout</h1>
+        </div>
+        <div class="container routine-container">
+            <div id="cardContainer">
+            </div>
+            {% if workout %}
+                <div class="card mb-3">
+                    <div class="container text-right">
+                      <div id="timer">
+                        <span id="hour">00</span>:<span id="minute">00</span>:<span id="second">00</span>:<span id="millisecond">000</span>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title text-center">{{workout.name}}</h4>
+                        <form action="/finish_workout" method="post">
+                            <input type="hidden" name="workout_id" value="{{ workout.id }}">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Reps</th>
+                                        <th scope="col">Sets</th>
+                                        <th scope="col">Weight</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for exercise in workout.exercises %}
+                                        <tr>
+                                            <th scope="row">{{ loop.index }}</th>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label for="exercise_name[]"></label>
+                                                    <input type="text" class="form-control" id="exercise_name[]" name="exercise_name[]" placeholder="{{ exercise.name }}" value="{{ exercise.name }}">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label for="exercise_rep[]"></label>
+                                                    <input type="number" class="form-control" id="exercise_rep[]" name="exercise_rep[]" placeholder="{{ exercise.reps }}" value="{{ exercise.reps }}">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label for="exercise_set[]"></label>
+                                                    <input type="number" class="form-control" id="exercise_set[]" name="exercise_set[]" placeholder="{{ exercise.sets }}" value="{{ exercise.reps }}">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label for="exercise_weight[]"></label>
+                                                    <input type="number" step="any" class="form-control" id="exercise_weight[]" name="exercise_weight[]" placeholder="" value="" required>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <div class="row d-flex justify-content-end px-5">
+                                <input type="hidden" name="duration" id="durationInput" value="1232">
+                                <button type="submit" class="btn btn-primary" id="finishWorkoutBtn">Finish Workout</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <!-- code for when the workout is not found -->
+            {% endif %}
+        </div>
+        <div class="col text-center">
+            <button class="btn btn-dark" onclick="window.location.href='/homepage'">Return to Homepage</button>
+        </div>
+    </div>
+</body>
+</html>

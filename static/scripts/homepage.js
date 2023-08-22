@@ -1,17 +1,15 @@
-let index = 0;
-slideshow();
-function slideshow() {
-  let i;
-  const slides = document.getElementsByClassName("slides");
 
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  index++;
+function scrollToCard() {
+    const element = document.getElementById("cardContainer");
 
-  if (index > slides.length) {
-    index = 1;
-  }
-  slides[index - 1].style.display = "block";
-  setTimeout(slideshow, 3000);
+
+    element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "start"
+        }
+
+    )
 }
+
+// Add a click event listener to the scroll anchor element

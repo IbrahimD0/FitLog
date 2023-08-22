@@ -1,54 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Create Workout</title>
+    <meta charset="UTF-8">
+    <title>Start Workout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/scripts/workout.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/styles/workout.css">
 </head>
 <body>
-    <h1>Create Workout</h1>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid d-flex justify-content-center">
 
-    <form action="{{ url_for('work_out') }}" method="POST">
-        <label for="workoutName">Workout Name:</label>
-        <input type="text" id="workoutName" name="workoutName" required>
-        <br><br>
-        <div id="exercisesContainer">
-            <div class="exercise">
-                <label for="exerciseName">Exercise Name:</label>
-                <input type="text" id="exerciseName" name="name[]" required>
-                <label for="reps">Reps:</label>
-                <input type="text" id="reps" name="reps[]" required>
-                <label for="sets">Sets:</label>
-                <input type="text" id="sets" name="sets[]" required>
-                <br><br>
-            </div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+            <li class="nav-item active">
+                <a class="nav-link" aria-current="page" href="/homepage">Home</a>
+            </li>
+            <li class="nav-item disabled">
+                <a class="nav-link" href="/workout">Create Workout</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/routines">Routines</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/progress">Progress</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages
+%} {% if category == 'error' %}
+<div class="alert alert-danger alter-dismissable fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% else %}
+<div class="alert alert-success alter-dismissable fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %} {% endfor %} {% endif %} {% endwith %}
+<div class="container d-flex flex-column align-items-center justify-content-center h-100 py-5">
+
+    <div class="text-center pb-2">
+        <h1 class="title">Create Workout</h1>
+    </div>
+    <div class="container routine-container">
+        <div id="cardContainer">
         </div>
-        <button type="button" onclick="addExercise()">Add Exercise</button>
-        <br><br>
-        <button type="submit">Save Workouts</button>
-        <br><br>
-        <button type="button" onclick="window.location.href='/homepage'">Return
-        to Homepage</button>
-    </form>
+
+        <div class="card mb-3">
+            <div class="container text-right">
+
+            </div>
+            <div class="card-body">
+                <form action="/workout" method="POST">
+                    <div class="row justify-content-center">
+                        <div class="form-group no-border text-center">
+                            <label for="workoutname"></label>
+                            <input type="text" class="form-control text-center no-border rounded-0 border-bottom "
+                                   id="workoutname" name="workoutName" placeholder="Workout Name" required>
+                        </div>
+                    </div>
 
 
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Reps</th>
+                            <th scope="col">Sets</th>
+                            <th scope="col">
+                                <div class="row d-flex justify-content-end">
+                                    <button type="button" onclick="addExercise()" class="btn btn-Dark btn-sm">+</button>
+                                </div>
 
-    <script>
-        function addExercise() {
-            const exerciseDiv = document.createElement("div");
-            exerciseDiv.classList.add("exercise");
-            exerciseDiv.innerHTML = `
-                <label>Exercise Name:</label>
-                <input type="text" name="name[]" required>
-                <label>Reps:</label>
-                <input type="text" name="reps[]" required>
-                <label>Sets:</label>
-                <input type="text" name="sets[]" required>
-                <br><br>
-            `;
-            document.getElementById("exercisesContainer").appendChild(exerciseDiv);
-        }
-    </script>
+                            <th scope="col">
+                                <div class="row d-flex justify-content-end">
+                                    <button type="button" onclick="delExercise()" class="btn btn-Dark btn-sm">-</button>
+                                </div>
+                            </th>
 
 
+                        </tr>
+
+                        </thead>
+                        <tbody id="tablebody">
+                        <tr>
+                            <td class="form-group">1</td>
+                            <td>
+                                <div class="form-group">
+                                    <label for="exerciseName"></label>
+                                    <input type="text" class="form-control" id="exerciseName" name="name[]" required>
+                                </div>
+                            <td>
+                                <div class="form-group">
+                                    <label for="reps"></label>
+                                    <input type="number" class="form-control" id="reps" name="reps[]" required>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="form-group">
+                                    <label for="sets"></label>
+                                    <input type="number" class="form-control" id="sets" name="sets[]" required>
+                                </div>
+                            </td>
+                            <td>
+
+                            </td>
+
+
+                        </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                    <div class="row d-flex justify-content-end px-5">
+                        <button type="submit" class="btn btn-primary ">Save Workout</button>
+                    </div>
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col text-center">
+        <button class="btn btn-dark" onclick="window.location.href='/homepage'">Return to Homepage</button>
+    </div>
+</div>
 </body>
 </html>

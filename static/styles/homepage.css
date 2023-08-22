@@ -1,15 +1,41 @@
-/* Reset default margin and padding */
-body, header, nav, ul, li {
-  margin: 0;
-  padding: 0;
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:300,400);
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5;
+    margin: 0;
+    padding: 0;
 }
-body{
-  background: linear-gradient(to right, #000046, #1cb5e0);
+.front-page{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
 }
-/* Style the header background and add spacing */
+#title {
+
+    height:100vh;
+    width: 100%;
+    background-image: url('https://img.freepik.com/premium-photo/fitness-concept-with-dumbbells-set-stone-surface_458909-40.jpg?w=1800');
+    background-size: cover;
+
+
+
+}
+h1{
+    font-size: 50px;
+    font-weight: bold;
+
+}
 header {
-  background-color: rgba(255,255,255, 0.2);
+  font-size: 20px;
+  height: 50px;
+
+  background-color: rgba(0,0,0, 0.7);
   padding: 10px;
+  transition: height 0.3s, font-size 0.3s;
+}
+.yugioh{
+    background-color: black;
 }
 
 /* Style the navigation bar */
@@ -32,48 +58,182 @@ nav ul li a {
 nav ul li a:hover {
   color: #ff0000;
 }
+.title{
+    padding-top: 20px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+#startfinishbtns{
+    display: flex;
 
-.main-container {
-  width: 85%;
-  height: 100%;
-  border-radius: 1.5em;
-  margin: 9em auto 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.45);
-  box-shadow: 0 0 2em rgb(69, 69, 69);
+}
+button {
+    margin: 5px;
 }
 
-.txt-container {
-  margin: 3em 2em 3em 5em;
-  width: 40vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
+/* ... Existing styles ... */
+/* Increase the ratios by 20% */
+.yugioh-card {
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 4.8rem; /* Updated: 20% increase from 4rem */
+    height: 19.2rem; /* Updated: 20% increase from 16rem */
+    width: 13.2rem; /* Updated: 20% increase from 11rem */
+    background-size: cover;
+    background-image: url("https://orig10.deviantart.net/69f2/f/2016/289/4/1/ygo_card_backing__final__by_icycatelf-dal6wsb.png");
+
+
 }
 
-.text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 50px;
+
+.yugioh-card:hover {
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.15), 10px 10px 12px 24px rgba(0, 0, 0, 0.1);
+    transform: scale(1.75);
+    background-image: url("https://e1.pngegg.com/pngimages/342/974/png-clipart-jp-ygo-series-2-devamped-blanks-yu-gi-oh-game-card-thumbnail.png");
+    margin: 30px;
+}
+.yugioh-card-cyan:hover{
+    background-image: url("https://e1.pngegg.com/pngimages/342/974/png-clipart-jp-ygo-series-2-devamped-blanks-yu-gi-oh-game-card-thumbnail.png");
+}
+.yugioh-card-blue:hover{
+    background-image: url("https://e1.pngegg.com/pngimages/342/974/png-clipart-jp-ygo-series-2-devamped-blanks-yu-gi-oh-game-card-thumbnail.png");
+
 }
 
-.main-slideshow{
-  width: 50vw;
-  margin: 3em 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.yugioh-card-title,
+.yugioh-card-img,
+.yugioh-card-text {
+    display: none;
 }
 
-.slidesSection{
-  border: 10px solid;
-  border-image-source: linear-gradient(to right, #000046, #1cb5e0);
-  border-image-slice: 100;
+/* Show elements on hover */
+.yugioh-card:hover .yugioh-card-title,
+.yugioh-card:hover .yugioh-card-img,
+.yugioh-card:hover .yugioh-card-text {
+
+    display: block;
+}
+.yugioh-card-title {
+    text-shadow: 6px 1px 6px rgba(0, 0, 0, 0.1);
+    height: 1.2rem; /* Updated: 20% increase from 1rem */
+    width: 9.6rem; /* Updated: 20% increase from 8rem */
+    margin-left: 1rem;
 }
 
+.yugioh-card-title p {
+    text-transform: uppercase;
+    font-family: 'TCG fonts', serif;
+    font-size: 1.2rem; /* Updated: 20% increase from 1rem */
+    font-weight: bold;
+    color: #555;
+    line-height: 1.5;
+    width: fit-content;
+}
+
+.yugioh-card-img {
+    background-color: white;
+    height: 10.2rem;
+    width: 9.24rem;
+    margin: 1rem 0 0.30rem 1.44rem;
+}
+
+.yugioh-card-img img {
+    position: relative;
+    width: auto;
+    height: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.yugioh-card-text {
+    padding-bottom: 2rem;
+    margin-left: 0.8rem;
+    height: 1.8rem;
+    width: 6.6rem;
+}
+
+.yugioh-card-text p {
+    font-family: 'MatrixFont', sans-serif;
+    font-size: 0.48rem;
+    color: #555;
+    padding-left: 3px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+}
+.demo a {
+  position: absolute;
+  display: inline-block;
+  transform: translate(0, -50%);
+  color: #000000;
+  font : normal 400 20px/1 'Josefin Sans', sans-serif;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: opacity .3s;
+
+}
+.demo a:hover {
+  opacity: .5;
+}
+#scroll a {
+
+
+
+}
+#scroll a span {
+
+  position: absolute;
+  top: 12rem;
+
+  width: 46px;
+  height: 46px;
+  border: 1px solid #000000;
+  border-radius: 100%;
+  box-sizing: border-box;
+}
+#scroll a span::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: '';
+  width: 16px;
+  height: 16px;
+  margin: -12px 0 0 -8px;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+
+  transform: rotate(-45deg);
+  box-sizing: border-box;
+}
+#scroll a span::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  content: '';
+  width: 44px;
+  height: 44px;
+  box-shadow: 0 0 0 0 rgba(0,0,0,.3);
+  border-radius: 100%;
+  opacity: 0;
+
+  animation: sdb03 3s infinite;
+  box-sizing: border-box;
+}
+
+@keyframes sdb03 {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  60% {
+    box-shadow: 0 0 0 60px rgba(0,0,0,.3);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}

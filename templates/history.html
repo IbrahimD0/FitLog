@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Progress History</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/scripts/homepage.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/styles/homepage.css">
+</head>
+<body>
+<div class="container routine-container">
+    <div id="cardContainer">
+        <!-- Card will be added/removed here -->
+    </div>
+    {% if user.daily_workouts%}
+    {% for workout in user.daily_workouts %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h4 class="card-title">{{ workout.name }}:{{ workout.date}}</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Reps</th>
+                    <th scope="col">Sets</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for exercise in workout.daily_exercises %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ exercise.name }}</td>
+                    <td>{{ exercise.reps }}</td>
+                    <td>{{ exercise.sets }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="card mb-3">
+        <div class="card-body ">
+            <h4 class="card-title text-center">There are no Workouts Saved</h4>
+            <button onclick="window.location.href='/workout'" class="btn btn-primary">Create Workout</button>
+        </div>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

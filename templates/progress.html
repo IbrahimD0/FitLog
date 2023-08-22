@@ -2,34 +2,67 @@
 <html lang="en">
 <head>
     <title>Progress</title>
+    <meta charset="UTF-8">
+    <title>Start Workout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/scripts/workout.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/styles/progress.css">
 </head>
 <body>
-    <h1>Workout Progress</h1>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <div class="container-fluid d-flex justify-content-center">
 
-    {% for workout in user.workouts %}
-        <h2>{{ workout.name }}</h2>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                <li class="nav-item active">
+                    <a class="nav-link" aria-current="page" href="/homepage">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/workout">Create Workout</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/routines">Routines</a>
+                </li>
+                <li class="nav-item disabled">
+                    <a class="nav-link" href="/progress">Progress</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Exercise</th>
-                    <th>Reps</th>
-                    <th>Sets</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for exercise in workout.exercises %}
-                    <tr>
-                        <td>{{ exercise.name }}</td>
-                        <td>{{ exercise.reps }}</td>
-                        <td>{{ exercise.sets }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endfor %}
-    <button onclick="window.location.href='/homepage'">Return to
-            Homepage</button>
+        </div>
+    </nav>
+
+    <div class="container-fluid card d-flex justify-content-around align-items-center flex-column p-2 border mt-5" style="height: auto">
+     <nav class = "navbar navbar-expand navbar-dark bg-info">
+        <div class="container-fluid d-flex justify-content-center">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li class="nav-item active">
+                <a class="nav-link" aria-current="page" href="/history">History</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/workout">Create Workout</a>
+              </li>
+              <li class="nav-item disabled">
+                <a class="nav-link" href="/routines">Routines</a>
+              </li>
+
+
+            </ul>
+
+        </div>
+    </nav>
+        <div class="row">
+
+
+
+        </div>
+
+    </div>
+
+    <button onclick="window.location.href='/homepage'">Return to Homepage</button>
 </body>
 </html>

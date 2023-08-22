@@ -3,25 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <title>Routines</title>
-  <link rel="stylesheet" href="/static/styles/routines.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles/routines.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/scripts/routines.js"></script>
 </head>
 <body>
-<h1>Routines </h1>
-<div class="routine-container">
-    <div class="routine">
-        {% for workout in user.workouts %}
-        <h2>{{ workout.name }} Routine</h2>
-        {% for exercise in workout.exercises %}
-            <p>Name: {{exercise.name}}</p>
-            <p>Reps: {{exercise.reps}}</p>
-            <p>Sets: {{exercise.sets}}</p>
-        {% endfor %}
-        <hr>
-    {% endfor %}
-    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %} {% if category ==
+        'error' %}
+        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+    <nav class = "navbar navbar-expand navbar-dark bg-dark">
+        <div class="container-fluid d-flex justify-content-center">
 
-</div>
-<button onclick="window.location.href='/homepage'">Return to
-            Homepage</button>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li class="nav-item active">
+                <a class="nav-link" aria-current="page" href="/homepage">Home</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/workout">Create Workout</a>
+              </li>
+              <li class="nav-item disabled">
+                <a class="nav-link" href="/routines">Routines</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/progress">Progress</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+            </ul>
+
+        </div>
+    </nav>
+    <div class="text-center">
+        <h1 class="title">Routines</h1>
+    </div>
+    <div class="container routine-container">
+        <div id="cardContainer">
+            <!-- Card will be added/removed here -->
+        </div>
+        {% if user.workouts %}
+            {% for workout in user.workouts %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ workout.name }}</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Reps</th>
+                                    <th scope="col">Sets</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for exercise in workout.exercises %}
+                                    <tr>
+                                        <th scope="row">{{ loop.index }}</th>
+                                        <td>{{ exercise.name }}</td>
+                                        <td>{{ exercise.reps }}</td>
+                                        <td>{{ exercise.sets }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div  class = "container-fluid d-flex " >
+                            <form action="/startworkout" method="post">
+                            <input type="hidden" name="workout_id" value="{{ workout.id }}">
+                                <script src="/static/scripts/timer.js"></script>
+                            <button type="submit" class="btn btn-primary" id="startWorkoutBtn">Start Workout</button>
+
+                            </form>
+                                <script>
+  document.getElementById("startWorkoutBtn").addEventListener("click", function () {
+    startTimer();
+  });
+</script>
+
+
+                            <form action="/delete_workout" method="post" onsubmit="return confirmDelete('{{ workout.id }}')">
+                            <input type="hidden" name="workout_id" value="{{ workout.id }}">
+                            <button type="submit" class="btn btn-danger">Remove Workout</button>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="card mb-3">
+                <div class="card-body ">
+                    <h4 class="card-title text-center">There are no Workouts Saved</h4>
+                    <button onclick="window.location.href='/workout'" class="btn btn-primary">Create Workout</button>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="col text-center">
+        <button class="btn btn-dark" onclick="window.location.href='/homepage'">Return to Homepage</button>
+    </div>
 </body>
 </html>

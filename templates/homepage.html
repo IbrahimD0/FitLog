@@ -2,40 +2,145 @@
 <html lang="en">
 <head>
   <title>Your Workout Tracking Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/scripts/homepage.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/styles/homepage.css">
+
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="/workout">Workouts</a></li>
-        <li><a href="/routines">Routines</a></li>
-        <li><a href="/progress">Progress</a></li>
-        <li><a href="#">Community</a></li>
 
-      </ul>
+
+    <nav class = "navbar navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid d-flex justify-content-center">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-current="page" href="/homepage">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/workout">Create Workout</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/routines">Routines</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/progress">Progress</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+
+    </div>
     </nav>
-  </header>
+    <div  class=" d-flex flex-column flex-nowrap front-page">
+        <div id = "title" class="title text-center d-flex justify-content-center align-items-center flex-column">
+            <h1 class="p-5">Start your workout journey</h1>
+            <div id = 'scroll' class="demo bg-dark">
+                <a onclick="scrollToCard()"><span></span></a>
+            </div>
+        </div>
 
-  <div class="main-container">
-    <div class="txt-container">
-      <p class="text">Are you ready to workout!?!</p>
     </div>
-    <div class="main-slideshow">
-      <div class="slidesSection">
-        <img class="slides" src="/static/images/workout1.gif" alt="workout1"
-             width="600px" height="485px"/>
-        <img class="slides" src="/static/images/workout2.gif" alt="workout2"
-        width="600px" height="485px"/>
-        <img class="slides" src="/static/images/workout3.gif" alt="workout3"
-        width="600px" height="485px"/>
-        <img class="slides" src="/static/images/workout4.gif" alt="workout4"
-        width="600px" height="485px"/>
-        <img class="slides" src="/static/images/workout5.gif" alt="workout5"
-        width="600px" height="485px"/>
-      </div>
+            {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %} {% if category ==
+        'error' %}
+        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+  <div id = "cardContainer" class="row-md card d-flex justify-content-around align-items-center flex-column p-2 border" style = "background-color: #000">
+
+
+    <div class="container-fluid card d-flex justify-content-around align-items-center flex-column p-2 border bg-dark" style="height:100vh">
+        <div class="title" style="height: 1rem">Choose your Destination</div>
+        <div class="row">
+
+            <div class="col-md-2 mx-5 mb-4">
+                <div class="card m-2 yugioh-card yugioh-card-cyan">
+                    <div class="card-body d-flex flex-column justify-content-around p-2">
+                        <div class='yugioh-card-title'>
+                            <h5 class="card-title text-dark">Popular</h5>
+                        </div>
+                        <div class='border yugioh-card-img'>
+                            <img class="card-img-top img-fluid" src="https://i.pinimg.com/originals/39/93/3b/39933bfb0bc2a619a567a4fb3942ddd3.png" alt="Card image cap">
+                        </div>
+                        <div class="yugioh-card-text">
+                            <p class="card-text">Browse some of the popular workout routines right now</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 mb-4 mx-5">
+                <div class="card m-2 yugioh-card yugioh-card-blue">
+                    <div class="card-body d-flex flex-column justify-content-around p-2">
+                        <div class='yugioh-card-title'>
+                            <p class="card-title text-dark">Popular</p>
+                        </div>
+                        <div class='yugioh-card-img'>
+                            <img class="card-img-top img-fluid" src="https://i.pinimg.com/originals/39/93/3b/39933bfb0bc2a619a567a4fb3942ddd3.png" alt="Card image cap">
+                        </div>
+                        <div class="yugioh-card-text">
+                            <p class="card-text">Browse some of the popular workout routines right now</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 mb-4 mx-5">
+                <div class="card m-2 yugioh-card">
+                    <div class="card-body d-flex flex-column justify-content-around p-2">
+                        <div class='yugioh-card-title'>
+                            <p class="card-title text-dark">adfad</p>
+                        </div>
+                        <div class='yugioh-card-img'>
+                            <img class="card-img-top img-fluid" src="https://i.pinimg.com/originals/39/93/3b/39933bfb0bc2a619a567a4fb3942ddd3.png" alt="Card image cap">
+                        </div>
+                        <div class="yugioh-card-text">
+                            <p class="card-text">Browse some of the popular workout routines right now</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-2 mb-4 mx-5">
+                <div class="card m-2 yugioh-card">
+                    <div class="card-body d-flex flex-column justify-content-around p-2">
+                        <div class='yugioh-card-title'>
+                            <p class="card-title text-dark">adfad</p>
+                        </div>
+                        <div class='yugioh-card-img'>
+                            <img class="card-img-top img-fluid" src="https://i.pinimg.com/originals/39/93/3b/39933bfb0bc2a619a567a4fb3942ddd3.png" alt="Card image cap">
+                        </div>
+                        <div class="yugioh-card-text">
+                            <p class="card-text">Browse some of the popular workout routines right now</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
     </div>
+
   </div>
-<script src="/static/scripts/homepage.js"></script>
+
 </body>
 </html>

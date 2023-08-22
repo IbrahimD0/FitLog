@@ -2,54 +2,90 @@
 <html lang="en">
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/styles/login.css">
-</head>
-{% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %} {% for category, message in messages %} {% if category ==
-    'error' %}
-    <div class="alert alert-danger alter-dismissable fade show" role="alert">
-      {{ message }}
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    {% else %}
-    <div class="alert alert-success alter-dismissable fade show" role="alert">
-      {{ message }}
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    {% endif %} {% endfor %} {% endif %} {% endwith %}
-<body>
-    <div class="login-container">
-        <form method="POST">
-        <h3>Login</h3>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input
-                    type="username"
-                    class="form-control"
-                    id="username"
-                    name="username"
-                    placeholder="Enter username"
-            />
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    name="password"
-                    placeholder="Enter password"
-            />
-        </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.5.0/js/bootstrap.min.js"></script>
+    <script scr = "/static/scripts/login.css"></script>
 
-        <br/>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-        <p class="signup-link">Don't have an account? <a href="/signup">Sign up</a></p>
-    </div>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %} {% if category ==
+        'error' %}
+        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+
+
+    <section class="vh-100 d-flex align-items-center justify-content-center">
+
+      <div class="card text-black p-5 w-75">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-7 col-lg-6 col-xl-5 d-flex align-items-end justify-content-center">
+              <img src="https://media.tenor.com/3hKQ_ZtSPd4AAAAd/luffy-snake-man.gif" class="img-fluid img-smaller border border-dark" alt="Phone image">
+            </div>
+
+          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+              <div class = "text-center pb-3"><h1 class = "bold">Login Page</h1></div>
+            <form method = "POST">
+              <!-- Username input -->
+              <div class="form-outline mb-4">
+                <input type="text" name = "username" id="usernameid" class="form-control form-control-lg" />
+                <label class="form-label" for="usernameid">Username</label>
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" name = "password" id="passwordid" class="form-control form-control-lg" />
+                <label class="form-label" for="passwordid">Password</label>
+              </div>
+
+              <div class="d-flex justify-content-around align-items-center mb-4">
+                <!-- Checkbox -->
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                  <label class="form-check-label" for="form1Example3"> Remember me </label>
+                </div>
+                <a href="/signup">Forgot password?</a>
+              </div>
+
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Login in</button>
+
+              <div class="divider d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+              </div>
+
+              <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="/signup"
+                role="button"> Sign up
+              </a>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+</body>
+</html>
+
 </body>
 </html>
